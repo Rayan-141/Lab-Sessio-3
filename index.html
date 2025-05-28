@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Bio Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --primary-light: #dbeafe;
+      --text-color: #1f2937;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --gradient: linear-gradient(135deg, #2563eb, #3b82f6);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: all 0.3s ease;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 100% 100%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.1) 0%, transparent 50%);
+    }
+
+    .dark-mode {
+      --primary-color: #60a5fa;
+      --primary-light: #1e3a8a;
+      --text-color: #f1f5f9;
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --border-color: #334155;
+      --gradient: linear-gradient(135deg, #60a5fa, #3b82f6);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: var(--card-bg);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient);
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid var(--border-color);
+      position: relative;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100px;
+      height: 2px;
+      background: var(--gradient);
+    }
+
+    .header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary-color);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .header img:hover {
+      transform: scale(1.05) rotate(5deg);
+    }
+
+    .header .info {
+      flex: 1;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .header h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: var(--text-color);
+      font-weight: 400;
+      opacity: 0.9;
+    }
+
+    .contact-info {
+      margin-top: 1rem;
+    }
+
+    .contact-info p {
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-info p i {
+      color: var(--primary-color);
+      width: 20px;
+    }
+
+    .contact-info p a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .contact-info p a:hover {
+      opacity: 0.8;
+    }
+
+    .section {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: var(--primary-light);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--gradient);
+    }
+
+    .section:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .section h2 {
+      font-size: 1.25rem;
+      color: var(--primary-color);
+      margin: 0 0 1rem 0;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section h2 i {
+      font-size: 1.1em;
+    }
+
+    .section p {
+      margin: 0.5rem 0;
+      color: var(--text-color);
+    }
+
+    .section ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .section ul li {
+      background-color: var(--card-bg);
+      padding: 0.75rem 1.25rem;
+      border-radius: 20px;
+      color: var(--primary-color);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .section ul li i {
+      font-size: 1.1em;
+    }
+
+    .section ul li:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .toggle-theme {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 100;
+    }
+
+    .toggle-theme button {
+      background: var(--gradient);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .toggle-theme button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .header img {
+        margin: 0 auto 1rem;
+      }
+      
+      .container {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="toggle-theme">
+    <button onclick="toggleTheme()"><i class="fas fa-moon"></i> Change Theme</button>
+  </div>
+
+  <div class="container">
+    <div class="header">
+      <img src="Rayan.jpeg" alt="Profile Picture" />
+      <div class="info">
+        <h1>Rayan Rawat</h1>
+        <h3>Web Developer / UI/UX</h3>
+        <div class="contact-info">
+          <p><i class="fas fa-map-marker-alt"></i> Location: Mumbai, India</p>
+          <p><i class="fas fa-phone"></i> Phone: 534535333</p>
+          <p><i class="fas fa-envelope"></i> Email: <a href="mailto:rayan@gmail.com">rayan@gmail.com</a></p>
+          <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/rayan-rawat-22bb40315/" target="_blank">LinkedIn Profile</a></p>
+          <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/Rayan-141" target="_blank">GitHub Profile</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2><i class="fas fa-user"></i> About Me:</h2>
+      <p>
+        I'm Rayan Rawat, a Computer Science student at ITM Skills University, passionate about coding and technology. I'm eager to learn and explore web development, programming, and innovative tech solutions. In my free time, I work on small projects and enjoy staying updated with the latest tech trends.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2><i class="fas fa-code"></i> Skills:</h2>
+      <ul>
+        <li><i class="fab fa-html5"></i> HTML</li>
+        <li><i class="fab fa-css3-alt"></i> CSS</li>
+        <li><i class="fab fa-js"></i> JavaScript</li>
+        <li><i class="fab fa-python"></i> Python</li>
+        <li><i class="fab fa-git-alt"></i> Git</li>
+        <li><i class="fas fa-database"></i> MySQL</li>
+        <li><i class="fas fa-puzzle-piece"></i> Problem Solving</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2> Projects:</h2>
+      <p> Welcome Development (Webpage) (Lab-Session-2)</p>
+      <p> Tribute Page (Lab-Session-2)</p>
+      <p> Portfolio Page (Lab-Session-3)</p>
+    </div>
+
+    <div class="section">
+      <h2><i class="fas fa-graduation-cap"></i> Education:</h2>
+      <p><i class="fas fa-university"></i> ITM Skills University (2024 - Present)</p>
+      <p><i class="fas fa-school"></i> NES Jr College (2024)</p>
+      <p><i class="fas fa-school"></i> St Pius X High School (2022)</p>
+    </div>
+
+    <div class="section contact-section">
+      <h2><i class="fas fa-running"></i> Activities/Sports:</h2>
+      <p><i class="fas fa-cricket-bat-ball"></i> Cricket</p>
+      <p><i class="fas fa-futbol"></i> Football</p>
+      <p><i class="fas fa-swimming-pool"></i> Swimming</p>
+    </div>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+      const button = document.querySelector('.toggle-theme button');
+      const icon = button.querySelector('i');
+      if (document.body.classList.contains("dark-mode")) {
+        icon.className = "fas fa-sun";
+      } else {
+        icon.className = "fas fa-moon";
+      }
+    }
+  </script>
+</body>
+</html>
